@@ -1,0 +1,109 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: test-user
+Building DAG of jobs...
+shared_storage_local_copies: True
+remote_exec: False
+Submitting maximum 100 job(s) over 1.0 second(s).
+Using shell: /usr/bin/bash
+Provided cores: 3
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+all          1
+job1         1
+job2         1
+job3         1
+total        4
+
+Resources before job selection: {'_cores': 3, '_nodes': 9223372036854775807, '_job_count': 9223372036854775807}
+Ready jobs: 3
+Select jobs to execute...
+Using enhanced MILP scheduler with critical path analysis
+Calculating critical path for all 4 jobs
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Built DAG graph with 4 nodes and 3 edges
+Job 0 (all) has optimized runtime: 0.1
+Job 1 (job1) has optimized runtime: 10.2
+Job 2 (job2) has optimized runtime: 10.2
+Job 3 (job3) has optimized runtime: 10.1
+Critical path: 1(job1, 10.2) → 0(all, 0.1)
+Critical path length: 10.3
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Trying critical path constraint: makespan >= 10.2349999999999999 (relaxation: 0.95)
+Added critical path constraint: makespan >= 10.2349999999999999 (relaxed from 10.3)
+Job history saved to /home/test-user/.snakemake/job_history/3390083594fb79a4636aaa2442417194.json
+Job history saved to /home/test-user/.snakemake/job_history/58b5a06cc35c9ddbd1e46e8ba3a17999.json
+Job history saved to /home/test-user/.snakemake/job_history/55ea54335847fc45a95de755a9988274.json
+MILP solution found with makespan: 10.4
+Selected 3 jobs
+Selected jobs: 3
+Resources after job selection: {'_cores': 3, '_nodes': 9223372036854775807, '_job_count': 100}
+Execute 3 jobs...
+[Mon Apr 28 18:49:38 2025]
+localrule job1:
+    output: results/job1.txt
+    jobid: 1
+    reason: Forced execution
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem_mib=1908
+
+[Mon Apr 28 18:49:38 2025]
+localrule job2:
+    output: results/job2.txt
+    jobid: 2
+    reason: Forced execution
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem_mib=1908
+
+[Mon Apr 28 18:49:38 2025]
+localrule job3:
+    output: results/job3.txt
+    jobid: 3
+    reason: Forced execution
+    resources: tmpdir=/tmp, mem_mb=1000, mem_mib=954
+
+Waiting for more resources.
+Job history saved to /home/test-user/.snakemake/job_history/3390083594fb79a4636aaa2442417194.json
+[Mon Apr 28 18:49:39 2025]
+Finished jobid: 1 (Rule: job1)
+1 of 4 steps (25%) done
+Job history saved to /home/test-user/.snakemake/job_history/58b5a06cc35c9ddbd1e46e8ba3a17999.json
+Job history saved to /home/test-user/.snakemake/job_history/55ea54335847fc45a95de755a9988274.json
+[Mon Apr 28 18:49:39 2025]
+Finished jobid: 2 (Rule: job2)
+2 of 4 steps (50%) done
+[Mon Apr 28 18:49:39 2025]
+Finished jobid: 3 (Rule: job3)
+3 of 4 steps (75%) done
+Resources before job selection: {'_cores': 8, '_nodes': 9223372036854775810, '_job_count': 100}
+Ready jobs: 1
+Select jobs to execute...
+Using enhanced MILP scheduler with critical path analysis
+Selected jobs: 1
+Resources after job selection: {'_cores': 8, '_nodes': 9223372036854775810, '_job_count': 100}
+Execute 1 jobs...
+[Mon Apr 28 18:49:39 2025]
+localrule all:
+    input: results/job1.txt, results/job2.txt, results/job3.txt
+    jobid: 0
+    reason: Forced execution
+    resources: tmpdir=/tmp
+
+Waiting for more resources.
+Job history saved to /home/test-user/.snakemake/job_history/6405da1596d7e4ad698d2fde18c3078c.json
+[Mon Apr 28 18:49:39 2025]
+Finished jobid: 0 (Rule: all)
+4 of 4 steps (100%) done
+Complete log(s): /home/test-user/.snakemake/log/2025-04-28T184938.556383.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

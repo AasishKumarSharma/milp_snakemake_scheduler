@@ -1,0 +1,40 @@
+{
+  "clusters": {
+    "local": {
+      "nodes": {
+        "cpu_node": {
+          "resources": {
+            "cores": 40,
+            "memory_mb": 16384,
+            "gpu_count": 0,
+            "local_storage_mb": 500000
+          },
+          "features": ["cpu", "compute", "x86_64"],
+          "properties": {
+            "cpu_flops": 1,
+            "memory_bandwidth_mbps": 100,
+            "read_mbps": 100,
+            "write_mbps": 100
+          }
+        },
+        "gpu_node": {
+          "resources": {
+            "cores": 40,
+            "memory_mb": 8192,
+            "gpu_count": 1,
+            "gpu_memory_mb": 8000,
+            "local_storage_mb": 250000
+          },
+          "features": ["cpu", "gpu", "compute", "x86_64"],
+          "properties": {
+            "cpu_flops": 1,
+            "gpu_flops": 0.1,
+            "memory_bandwidth_mbps": 100,
+            "read_mbps": 100,
+            "write_mbps": 100
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+Command:
+¸¸¸
+bash
+
+snakemake --scheduler=milp-ext --config system_profile=~/config/system_profile.json scheduler_config=~/config/scheduler_config.yaml -j 8 --forceall --verbose
+¸¸¸
+

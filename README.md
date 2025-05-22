@@ -179,14 +179,14 @@ Include additional tests in `tests/` following the existing patterns.
 * Bump version in `setup.py`.
 * Tag a release:
 
-  ```bash
+```bash
 git tag v0.1.0
 git push --tags
-  ```
+```
 
-````
+
 - Build and upload:
-  ```bash
+```bash
 python3 -m build
 twine upload dist/*
 ````

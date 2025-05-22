@@ -1,0 +1,146 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: test-user
+Building DAG of jobs...
+shared_storage_local_copies: True
+remote_exec: False
+Submitting maximum 100 job(s) over 1.0 second(s).
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+all          1
+job1         1
+job2         1
+job3         1
+total        4
+
+Resources before job selection: {'_cores': 8, '_nodes': 9223372036854775807, '_job_count': 9223372036854775807}
+Ready jobs: 1
+Select jobs to execute...
+Using enhanced MILP scheduler with critical path analysis
+Calculating critical path for all 4 jobs
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Built DAG graph with 4 nodes and 3 edges
+Job 0 (all) has optimized runtime: 0.1
+Job 1 (job1) has optimized runtime: 10.2
+Job 2 (job2) has optimized runtime: 20.2
+Job 3 (job3) has optimized runtime: 1.1
+Critical path: 3(job3, 1.1) → 2(job2, 20.2) → 1(job1, 10.2) → 0(all, 0.1)
+Critical path length: 31.6
+Selected single job with makespan: 1
+Selected jobs: 1
+Resources after job selection: {'_cores': 8, '_nodes': 9223372036854775807, '_job_count': 100}
+Execute 1 jobs...
+[Tue Apr 29 18:07:29 2025]
+localrule job3:
+    output: results/job3.txt
+    jobid: 3
+    reason: Forced execution
+    resources: tmpdir=/tmp, mem_mb=1000, mem_mib=954, runtime=1
+
+Waiting for more resources.
+Job history saved to /home/test-user/.snakemake/job_history/55ea54335847fc45a95de755a9988274.json
+[Tue Apr 29 18:07:30 2025]
+Finished jobid: 3 (Rule: job3)
+1 of 4 steps (25%) done
+Resources before job selection: {'_cores': 9, '_nodes': 9223372036854775808, '_job_count': 100}
+Ready jobs: 1
+Select jobs to execute...
+Using enhanced MILP scheduler with critical path analysis
+Calculating critical path for all 3 jobs
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Built DAG graph with 3 nodes and 2 edges
+Job 0 (all) has optimized runtime: 0.1
+Job 1 (job1) has optimized runtime: 10.2
+Job 2 (job2) has optimized runtime: 20.2
+Critical path: 2(job2, 20.2) → 1(job1, 10.2) → 0(all, 0.1)
+Critical path length: 30.5
+Selected single job with makespan: 20
+Selected jobs: 1
+Resources after job selection: {'_cores': 9, '_nodes': 9223372036854775808, '_job_count': 100}
+Execute 1 jobs...
+[Tue Apr 29 18:07:30 2025]
+localrule job2:
+    input: results/job3.txt
+    output: results/job2.txt
+    jobid: 2
+    reason: Forced execution
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem_mib=1908, runtime=20
+
+Waiting for more resources.
+Job history saved to /home/test-user/.snakemake/job_history/fecea1fabdf667a6c3eb0856b59b3ffc.json
+[Tue Apr 29 18:07:31 2025]
+Finished jobid: 2 (Rule: job2)
+2 of 4 steps (50%) done
+Resources before job selection: {'_cores': 11, '_nodes': 9223372036854775809, '_job_count': 100}
+Ready jobs: 1
+Select jobs to execute...
+Using enhanced MILP scheduler with critical path analysis
+Calculating critical path for all 2 jobs
+Using default configuration (no config file found)
+Loaded system profile from /home/test-user/snakemake/src/snakemake/system_profile.json
+Built DAG graph with 2 nodes and 1 edges
+Job 0 (all) has optimized runtime: 0.1
+Job 1 (job1) has optimized runtime: 10.2
+Critical path: 1(job1, 10.2) → 0(all, 0.1)
+Critical path length: 10.299999999999999
+Selected single job with makespan: 10
+Selected jobs: 1
+Resources after job selection: {'_cores': 11, '_nodes': 9223372036854775809, '_job_count': 100}
+Execute 1 jobs...
+[Tue Apr 29 18:07:31 2025]
+localrule job1:
+    input: results/job2.txt
+    output: results/job1.txt
+    jobid: 1
+    reason: Forced execution
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem_mib=1908, runtime=10
+
+Waiting for more resources.
+Job history saved to /home/test-user/.snakemake/job_history/d55ef035b93627f4853eac25e9cc44bf.json
+[Tue Apr 29 18:07:32 2025]
+Finished jobid: 1 (Rule: job1)
+3 of 4 steps (75%) done
+Resources before job selection: {'_cores': 13, '_nodes': 9223372036854775810, '_job_count': 100}
+Ready jobs: 1
+Select jobs to execute...
+Using enhanced MILP scheduler with critical path analysis
+Calculating critical path for all 1 jobs
+Built DAG graph with 1 nodes and 0 edges
+Job 0 (all) has optimized runtime: 0.1
+Critical path: 0(all, 0.1)
+Critical path length: 0.1
+Selected single job with makespan: 1
+Selected jobs: 1
+Resources after job selection: {'_cores': 13, '_nodes': 9223372036854775810, '_job_count': 100}
+Execute 1 jobs...
+[Tue Apr 29 18:07:32 2025]
+localrule all:
+    input: results/job1.txt
+    jobid: 0
+    reason: Forced execution
+    resources: tmpdir=/tmp
+
+Waiting for more resources.
+Job history saved to /home/test-user/.snakemake/job_history/9bac2e67f3a253d8c1fd7741ccf3ccf5.json
+[Tue Apr 29 18:07:32 2025]
+Finished jobid: 0 (Rule: all)
+4 of 4 steps (100%) done
+Complete log(s): /home/test-user/.snakemake/log/2025-04-29T180729.332000.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

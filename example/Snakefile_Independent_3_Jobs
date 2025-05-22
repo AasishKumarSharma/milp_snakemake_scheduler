@@ -1,0 +1,91 @@
+# Independent Jobs Snakefile
+#
+# Job specifications:
+# - job1: t_cpu = 10 min, t_gpu = 20 min (runs faster on CPU)
+# - job2: t_cpu = 20 min, t_gpu = 5 min (runs faster on GPU)
+# - job3: t_cpu = 1 min, t_gpu = 5 min (runs faster on CPU)
+#
+# Optimal placement: job1 on CPU node, job2 & job3 on GPU node
+# Theoretical optimal makespan: 10 minutes
+
+rule all:
+    input:
+        "results/job1.txt",
+        "results/job2.txt",
+        "results/job3.txt"
+
+rule job1:
+    output:
+        "results/job1.txt"
+    resources:
+        mem_mb = 2000,
+        _cores = 2,
+        runtime = 10  # CPU baseline runtime
+    params:
+        job_specification = {
+            "features": ["cpu"],
+            "resources": {
+                "input_size_mb": 100,
+                "output_size_mb": 100
+            },
+            "properties": {
+                "cpu_flops": 1.0e12,  # 1 teraflop job on CPU
+                "gpu_flops": 2.0e12   # Takes twice as long on GPU
+            }
+        }
+    shell:
+        """
+        echo "Running job1 (CPU-optimized)" > {output}
+        sleep 1  # Simulate work
+        """
+
+rule job2:
+    output:
+        "results/job2.txt"
+    resources:
+        mem_mb = 2000,
+        _cores = 2,
+        runtime = 20  # CPU baseline runtime
+    params:
+        job_specification = {
+            "features": ["compute"],  # Can run on either CPU or GPU
+            "resources": {
+                "gpu_memory_mb": 2000,
+                "input_size_mb": 100,
+                "output_size_mb": 100
+            },
+            "properties": {
+                "cpu_flops": 2.0e12,  # 2 teraflops on CPU
+                "gpu_flops": 5.0e11   # 0.5 teraflops on GPU = 4x faster
+            }
+        }
+    shell:
+        """
+        echo "Running job2 (GPU-optimized)" > {output}
+        sleep 1  # Simulate work
+        """
+
+rule job3:
+    output:
+        "results/job3.txt"
+    resources:
+        mem_mb = 1000,
+        _cores = 1,
+        runtime = 1  # CPU baseline runtime
+    params:
+        job_specification = {
+            "features": ["compute"],  # Can run on either CPU or GPU
+            "resources": {
+                "input_size_mb": 50,
+                "output_size_mb": 50
+            },
+            "properties": {
+                "cpu_flops": 1.0e11,  # 0.1 teraflops on CPU
+                "gpu_flops": 5.0e11   # 0.5 teraflops on GPU = 5x slower
+            }
+        }
+    shell:
+        """
+        echo "Running job3 (CPU-optimized)" > {output}
+        sleep 1  # Simulate work
+        """
