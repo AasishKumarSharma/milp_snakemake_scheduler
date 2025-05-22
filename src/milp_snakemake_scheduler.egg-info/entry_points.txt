@@ -1,0 +1,2 @@
+[snakemake.scheduler_plugins]
+milp = milp_scheduler.scheduler:milp_scheduler_factory

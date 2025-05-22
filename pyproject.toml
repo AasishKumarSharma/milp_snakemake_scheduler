@@ -1,3 +1,17 @@
 [build-system]
 requires = ["setuptools>=40.6.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "milp_snakemake_scheduler"
+version = "0.1.0"
+description = "A Mixed-Integer Linear Programming (MILP) scheduler for Snakemake to optimally analyze the jobs for heterogeneous compute resources"
+readme = "README.md"
+authors = [{ name="Aasish Kumar Sharma", email="aasish.kr.sharma@gmail.com" }]
+license = { text="MIT" }
+dependencies = ["Snakemake"]
+requires-python = ">=3.6"
+
+[project.urls]
+Homepage = "https://github.com/AasishKumarSharma/milp_snakemake_scheduler"
+Issues = "https://github.com/AasishKumarSharma/milp_snakemake_scheduler/issues"
