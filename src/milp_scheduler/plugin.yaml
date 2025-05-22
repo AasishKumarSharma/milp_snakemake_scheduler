@@ -1,0 +1,7 @@
+name: milp_scheduler
+type: scheduler
+description: MILP-based job scheduler for Snakemake
+entry: snakemake.scheduler_plugins.milp_scheduler.scheduler
+requirements:
+  - pulp
+  - networkx

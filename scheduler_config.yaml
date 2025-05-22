@@ -1,0 +1,114 @@
+scheduler:
+  type: milp
+  paths:
+    system_profile: "system_profile.json"
+    job_history: "~/.snakemake/job_history"
+    gnnrl_models: "~/.snakemake/gnnrl_models"
+  nomenclature:
+    features:
+      computing: 
+        - "cpu"
+        - "x86_64"
+        - "arm64"
+        - "gpu"
+        - "cuda"
+        - "opencl"
+        - "fpga"
+        - "avx512"
+        - "avx2"
+      gpu_versions:
+        - "cuda_10"
+        - "cuda_11"
+        - "cuda_12"
+        - "a100"
+        - "v100"
+        - "rtx_3090"
+        - "rtx_4090"
+      storage:
+        - "ssd"
+        - "nvme"
+        - "hdd"
+        - "fast_storage"
+        - "scratch"
+        - "shared_fs"
+        - "local_fs"
+      network:
+        - "infiniband"
+        - "ethernet_10g"
+        - "ethernet_100g"
+        - "omni_path"
+        - "high_bandwidth"
+      memory: 
+        - "high_memory"
+        - "numa"
+      partitions:
+        - "partition_standard"
+        - "partition_gpu"
+        - "partition_bigmem"
+        - "partition_io"
+    resources:
+      compute: 
+        - "cores"
+        - "gpu_count"
+        - "gpu_memory_mb"
+      storage:
+        - "memory_mb"
+        - "local_storage_mb"
+        - "shared_storage_mb"
+      data:
+        - "input_size_mb"
+        - "output_size_mb"
+        - "temp_size_mb"
+      power:
+        - "max_watts"
+    properties:
+      computational:
+        - "cpu_flops"
+        - "gpu_flops"
+        - "integer_ops"
+        - "vector_ops"
+      memory:
+        - "memory_bandwidth_mbps"
+      storage:
+        - "read_mbps"
+        - "write_mbps"
+        - "iops"
+        - "io_pattern"
+      network:
+        - "network_bandwidth_mbps"
+        - "network_latency_ms"
+      power:
+        - "idle_watts"
+        - "power_efficiency"
+  estimation:
+    auto_estimate_file_sizes: true
+    history:
+      enabled: true
+      adaptation_weight: 0.7
+  runtime:
+    default_minutes: 30
+    uncertainty_factor: 0.2
+    max_timeout_factor: 1.5
+    min_runtime_minutes: 1
+  optimization:
+    objective_weights:
+      makespan: 0.8
+      energy: 0.1
+      utilization: 0.1
+    constraints:
+      penalty_scale: 50.0
+    time_limit_seconds: 10
+    fallback: "greedy"  # or "ilp"
+  milp:
+    solver: "CBC"
+    threads: 4
+    gap_tolerance: 0.05
+    formulation:
+      use_big_m: true
+      big_m_value: 100000
+  updates:
+    check_interval_seconds: 300
+    dynamic_resources: false
+  validation:
+    enforce_nomenclature: false
+    warn_on_unknown_terms: true

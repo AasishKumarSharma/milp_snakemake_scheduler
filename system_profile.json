@@ -1,0 +1,63 @@
+{
+  "clusters": {
+    "local": {
+      "nodes": {
+        "default": {
+          "resources": {
+            "cores": 8,
+            "memory_mb": 16384,
+            "gpu_count": 0,
+            "local_storage_mb": 100000
+          },
+          "features": ["cpu", "x86_64", "avx2"],
+          "properties": {
+            "cpu_flops": 100000000000,
+            "memory_bandwidth_mbps": 25600,
+            "read_mbps": 500,
+            "write_mbps": 400
+          }
+        }
+      }
+    },
+    "gpu_cluster": {
+      "nodes": {
+        "gpu_node1": {
+          "resources": {
+            "cores": 16,
+            "memory_mb": 32768,
+            "gpu_count": 1,
+            "gpu_memory_mb": 11264,
+            "local_storage_mb": 500000
+          },
+          "features": ["cpu", "x86_64", "avx2", "gpu", "cuda", "cuda_11"],
+          "properties": {
+            "cpu_flops": 200000000000,
+            "gpu_flops": 14000000000000,
+            "memory_bandwidth_mbps": 51200,
+            "read_mbps": 2000,
+            "write_mbps": 1500
+          }
+        }
+      }
+    },
+    "high_memory": {
+      "nodes": {
+        "bigmem1": {
+          "resources": {
+            "cores": 32,
+            "memory_mb": 262144,
+            "gpu_count": 0,
+            "local_storage_mb": 1000000
+          },
+          "features": ["cpu", "x86_64", "avx512", "high_memory"],
+          "properties": {
+            "cpu_flops": 400000000000,
+            "memory_bandwidth_mbps": 102400,
+            "read_mbps": 3000,
+            "write_mbps": 2500
+          }
+        }
+      }
+    }
+  }
+}
