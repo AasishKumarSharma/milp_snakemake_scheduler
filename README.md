@@ -147,7 +147,7 @@ rule demo:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 Run tests with:
 
