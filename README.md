@@ -30,7 +30,7 @@ pip install milp-snakemake-scheduler
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/milp_snakemake_scheduler.git
+git clone https://github.com/AasishKumarSharma/milp_snakemake_scheduler.git
 cd milp_snakemake_scheduler
 pip install .
 ```

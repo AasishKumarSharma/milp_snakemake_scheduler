@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="milp-snakemake-scheduler",
-    version="0.1.0",
+    version="0.1.1",
     author="Your Name",
     description="MILP‑based job scheduler plugin for Snakemake",
     long_description=open("README.md").read(),

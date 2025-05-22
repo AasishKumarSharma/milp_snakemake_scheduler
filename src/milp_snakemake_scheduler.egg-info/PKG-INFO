@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: milp_snakemake_scheduler
-Version: 0.1.0
+Version: 0.1.1
 Summary: A Mixed-Integer Linear Programming (MILP) scheduler for Snakemake to optimally analyze the jobs for heterogeneous compute resources
 Author: Your Name
 Author-email: Aasish Kumar Sharma <aasish.kr.sharma@gmail.com>
@@ -45,7 +45,7 @@ pip install milp-snakemake-scheduler
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/milp_snakemake_scheduler.git
+git clone https://github.com/AasishKumarSharma/milp_snakemake_scheduler.git
 cd milp_snakemake_scheduler
 pip install .
 ```
@@ -194,14 +194,14 @@ Include additional tests in `tests/` following the existing patterns.
 * Bump version in `setup.py`.
 * Tag a release:
 
-  ```bash
+```bash
 git tag v0.1.0
 git push --tags
-  ```
+```
 
-````
+
 - Build and upload:
-  ```bash
+```bash
 python3 -m build
 twine upload dist/*
 ````
