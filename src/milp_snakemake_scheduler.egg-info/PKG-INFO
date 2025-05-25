@@ -1,9 +1,9 @@
 Metadata-Version: 2.4
 Name: milp_snakemake_scheduler
-Version: 0.1.1
+Version: 0.1.0
 Summary: A Mixed-Integer Linear Programming (MILP) scheduler for Snakemake to optimally analyze the jobs for heterogeneous compute resources
 Author: Your Name
-Author-email: Aasish Kumar Sharma <aasish.kr.sharma@gmail.com>
+Author-email: Aasish Kumar Sharma <aasish.sharma@uni-goettingen.de>
 License: MIT
 Project-URL: Homepage, https://github.com/AasishKumarSharma/milp_snakemake_scheduler
 Project-URL: Issues, https://github.com/AasishKumarSharma/milp_snakemake_scheduler/issues

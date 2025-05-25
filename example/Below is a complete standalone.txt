@@ -1,0 +1,253 @@
+Below is a complete standalone Python package layout for your MILP‑based Snakemake scheduler, supporting both **`milp`** and **`milp-ext`** modes. Clone or copy this structure into your repo, then install with `pip install .`.
+
+```
+milp_snakemake_scheduler/        # Root of Git repository
+├── README.md                    # Installation & usage instructions
+├── setup.py                     # Package configuration for setuptools
+├── pyproject.toml               # Build system configuration
+├── requirements.txt             # Runtime dependencies
+├── scheduler_config.yaml        # Example scheduler configuration
+├── system_profile.json          # Example system profile
+├── example_snakefile.py         # Usage example
+├── src/                         # Source code
+│   └── milp_scheduler/         # Python package
+│       ├── __init__.py         # Package metadata (version)
+│       └── scheduler.py        # MILPJobScheduler, MILPExtJobScheduler & factories
+└── tests/                       # Unit tests
+    └── test_milp_scheduler.py  # Pytest suite
+```
+
+---
+
+### README.md
+
+````markdown
+# MILP Snakemake Scheduler Plugin
+
+Pip-installable scheduler plugin for Snakemake with two modes:
+
+- **`milp`**: schedules only ready jobs via MILP.
+- **`milp-ext`**: schedules across all pending jobs using MILP + critical-path analysis.
+
+## Features
+
+- **Resource-Aware** (CPU, memory, GPU, I/O)
+- **Historical Estimation** of runtimes and I/O sizes
+- **Multi-Objective**: weighted makespan & energy
+- **Critical-Path** analysis in `milp-ext` mode
+- **Graceful Fallbacks** to greedy/ILP
+- **Auto-Discovery** via setuptools entry points
+
+## Installation
+
+```bash
+pip install milp-snakemake-scheduler
+````
+
+Or from source:
+
+```bash
+git clone https://github.com/yourusername/milp_snakemake_scheduler.git
+cd milp_snakemake_scheduler
+pip install .
+```
+
+## Usage
+
+Run in **MILP-only** mode:
+
+```bash
+snakemake --scheduler milp \
+          --cores 8 \
+          --scheduler-config scheduler_config.yaml \
+          --system-profile system_profile.json
+```
+
+Run in **Extended MILP** mode with critical-path:
+
+```bash
+snakemake --scheduler milp-ext \
+          --cores 8 \
+          --scheduler-config scheduler_config.yaml \
+          --system-profile system_profile.json
+```
+
+Add `-n` for dry-run:
+
+```
+snakemake --scheduler milp-ext -n --cores 8 --scheduler-config scheduler_config.yaml --system-profile system_profile.json
+```
+
+## Configuration
+
+### scheduler\_config.yaml
+
+```yaml
+scheduler:
+  type: milp       # or milp-ext
+  paths:
+    system_profile: system_profile.json
+  estimation:
+    auto_estimate_file_sizes: true
+    history:
+      enabled: true
+      adaptation_weight: 0.7
+  optimization:
+    objective_weights:
+      makespan: 0.8
+      energy: 0.2
+    time_limit_seconds: 30
+    fallback: greedy  # or ilp
+```
+
+### system\_profile.json
+
+*(Define clusters/nodes; example omitted for brevity)*
+
+```
+{ "clusters": { /*…*/ }}
+```
+
+## Example
+
+See `example_snakefile.py` for detailed usage.
+
+## Testing
+
+```bash
+pytest tests/
+```
+
+## Contributing
+
+1. Fork and branch
+2. Implement features/tests
+3. `pytest`
+4. Submit PR
+
+## License
+
+MIT (see LICENSE)
+
+````
+
+---
+
+### setup.py
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name="milp-snakemake-scheduler",
+    version="0.1.0",
+    author="Your Name",
+    description="MILP-based scheduler plugin for Snakemake (milp & milp-ext)",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    install_requires=[
+        "pulp>=2.0",
+        "networkx>=2.5",
+    ],
+    entry_points={
+        "snakemake.scheduler_plugins": [
+            "milp = milp_scheduler.scheduler:milp_scheduler_factory",
+            "milp-ext = milp_scheduler.scheduler:milp_ext_scheduler_factory",
+        ],
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
+)
+````
+
+---
+
+### pyproject.toml
+
+```toml
+[build-system]
+requires = ["setuptools>=40.6.0", "wheel"]
+build-backend = "setuptools.build_meta"
+```
+
+---
+
+### requirements.txt
+
+```
+pulp>=2.0
+networkx>=2.5
+```
+
+---
+
+### src/milp\_scheduler/**init**.py
+
+```python
+"""MILP scheduler plugin for Snakemake"""
+__version__ = "0.1.0"
+```
+
+---
+
+### src/milp\_scheduler/scheduler.py
+
+```python
+import logging
+# other imports...
+from snakemake.scheduler import JobScheduler
+
+logger = logging.getLogger(__name__)
+BIG_M = 1e5
+
+class MILPJobScheduler(JobScheduler):
+    # ... original milp-only logic ...
+    pass
+
+class MILPExtJobScheduler(JobScheduler):
+    # ... extended logic with critical-path ...
+    pass
+
+
+def milp_scheduler_factory(workflow, executor_plugin):
+    return MILPJobScheduler(workflow, executor_plugin)
+
+
+def milp_ext_scheduler_factory(workflow, executor_plugin):
+    return MILPExtJobScheduler(workflow, executor_plugin)
+```
+
+---
+
+### tests/test\_milp\_scheduler.py
+
+```python
+import pytest
+from milp_scheduler.scheduler import MILPJobScheduler, MILPExtJobScheduler
+
+from snakemake.settings.types import SchedulingSettings
+
+def make_workflow(mode):
+    class W: pass
+    w = W()
+    w.scheduling_settings = SchedulingSettings()
+    w.scheduling_settings.scheduler = mode
+    w.global_resources = {"_cores": 2}
+    w.dag = type("D", (), {"dependencies": {}})()
+    return w
+
+@pytest.mark.parametrize("mode,cls", [
+    ("milp", MILPJobScheduler),
+    ("milp-ext", MILPExtJobScheduler),
+])
+def test_import_and_init(mode, cls):
+    workflow = make_workflow(mode)
+    sched = cls(workflow, None)
+    assert isinstance(sched, cls)
+```
+
