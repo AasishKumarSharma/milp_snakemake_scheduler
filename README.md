@@ -213,6 +213,7 @@ If you use this repository or its code, please cite the following paper:
   doi       = {10.1109/COMPSAC65507.2025.00343},
   url       = {https://doi.org/10.1109/COMPSAC65507.2025.00343}
 }
+```
 
 ---
 
