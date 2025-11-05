@@ -186,6 +186,53 @@ Please follow [Conventional Commits](https://www.conventionalcommits.org/) for c
 
 ---
 
+## Reference
+
+If you use this repository or its code, please cite the following paper:
+
+> **Aasish Kumar Sharma, Julian Kunkel et. al.**  
+> *Workflow-Driven Modeling for the Compute Continuum: An Optimization Approach to Automated System and Workload Scheduling*  
+> In: *Proceedings of the 2025 IEEE 49th Annual Computers, Software, and Applications Conference (COMPSAC)*, IEEE, 2025.  
+> DOI: [10.1109/COMPSAC65507.2025.00343](https://doi.org/10.1109/COMPSAC65507.2025.00343)  
+> arXiv: [2506.00260](https://arxiv.org/abs/2506.00260)
+
+📘 Official IEEE Xplore entry:  
+[https://ieeexplore.ieee.org/document/11126665](https://ieeexplore.ieee.org/document/11126665)
+
+---
+
+## Citation
+
+```bibtex
+@inproceedings{sharma2025grapheonrl,
+  author    = {Aasish Kumar Sharma and Julian Kunkel},
+  title     = {Workflow-Driven Modeling for the Compute Continuum: An Optimization Approach to Automated System and Workload Scheduling},
+  booktitle = {2025 IEEE 49th Annual Computers, Software, and Applications Conference (COMPSAC)},
+  year      = {2025},
+  publisher = {IEEE},
+  doi       = {10.1109/COMPSAC65507.2025.00343},
+  url       = {https://doi.org/10.1109/COMPSAC65507.2025.00343}
+}
+
+---
+
+## Disclaimer Note on Repository Status: 
+
+> An issue was raised by the Snakemake maintainers regarding the naming convension.
+> This repository corresponds to the *DECICE Project* implementation described in the
+> paper *“Workflow-Driven Modeling for the Compute Continuum: An Optimization Approach to Automated System and Workload Scheduling”*  
+> (Sharma & Kunkel et. al., IEEE Xplore, 2025).  
+>
+> To preserve reproducibility and citation integrity, this version will remain unchanged.
+> A new repository, [`milp_ext`](https://github.com/AasishKumarSharma/snakemake-scheduler-plugin-milp_ext), extends this work by
+> implementing the official [Snakemake Scheduler Plugin Interface](https://github.com/snakemake/snakemake-interface-scheduler-plugins)
+> and follows the naming conventions recommended by the Snakemake maintainers.
+>
+> Future contributions, improvements, and PRs will be directed to the `milp_ext` repository,
+> while this repository remains the published research artifact.
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
