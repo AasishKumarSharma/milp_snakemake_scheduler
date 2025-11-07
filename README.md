@@ -205,13 +205,13 @@ If you use this repository or its code, please cite the following paper:
 
 ```bibtex
 @inproceedings{sharma2025grapheonrl,
-  author    = {Aasish Kumar Sharma and Julian Kunkel},
-  title     = {Workflow-Driven Modeling for the Compute Continuum: An Optimization Approach to Automated System and Workload Scheduling},
+  author = {Aasish Kumar Sharma and Julian Kunkel},
+  title = {Workflow-Driven Modeling for the Compute Continuum: An Optimization Approach to Automated System and Workload Scheduling},
   booktitle = {2025 IEEE 49th Annual Computers, Software, and Applications Conference (COMPSAC)},
-  year      = {2025},
+  year = {2025},
   publisher = {IEEE},
-  doi       = {10.1109/COMPSAC65507.2025.00343},
-  url       = {https://doi.org/10.1109/COMPSAC65507.2025.00343}
+  doi = {10.1109/COMPSAC65507.2025.00343},
+  url = {https://doi.org/10.1109/COMPSAC65507.2025.00343}
 }
 ```
 
