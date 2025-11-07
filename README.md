@@ -204,7 +204,7 @@ If you use this repository or its code, please cite the following paper:
 ## Citation
 
 ```bibtex
-@inproceedings{sharma2025grapheonrl,
+@inproceedings{sharma2025workflow,
   author = {Aasish Kumar Sharma and Julian Kunkel},
   title = {Workflow-Driven Modeling for the Compute Continuum: An Optimization Approach to Automated System and Workload Scheduling},
   booktitle = {2025 IEEE 49th Annual Computers, Software, and Applications Conference (COMPSAC)},
